@@ -1,0 +1,25 @@
+{% extends 'news/base.html' %}
+
+
+
+{% block content %}
+    
+ 
+
+        <div class="cont_p" style="width:800px; margin:330px 0 0 20px;">
+            <div class="news_cont" style="width:100%;">
+                {% for new_l in local_news %}
+                <div class="new_block" style="display: flex; width:90%; height:150px; margin:10px;">
+                    <div class="image_b" style="width:230px; height:130px; box-sizing:border-box;"><a href="{{ new_l.get_absolute_url }}"><img src="{{ new_l.image.url }}" alt="" style="width: 100%; height:100%; border-radius:5px;"></a></div>
+                    <div class="text_b" style="width: 480px; padding-left:10px;">
+                        <div class="time"><span><i class="fa fa-calendar"></i> {{ new_l.publish_time }}</span></div>
+                        <div class="text_t" style="font-size: 20px; font-weight:600;"><a href="{{ new_l.get_absolute_url }}" style="text-decoration: none; color:black;">{{ new_l.title | truncatewords:6 }}</a></div>
+                        <div class="text_b" style="font-size: 17px;"><a href="{{ new_l.get_absolute_url }}" style="text-decoration: none; color:black;">{{ new_l.body | truncatewords:20 }}</a></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+{% endblock content %}
