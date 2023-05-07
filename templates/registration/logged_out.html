@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Log Out{% endblock title %}
+
+
+
+{% block content %}
+
+<h3>You Logged Out</h3>
+<p>Are you want to</p>
+<br>
+<a href="{% url 'login' %}"><button class="btn btn-info ml-2">Log In</button></a>
+
+
+{% endblock content %}

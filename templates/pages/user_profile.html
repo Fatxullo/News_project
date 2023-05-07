@@ -1,0 +1,28 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}User Profile{% endblock title %}
+
+
+{% block content %}
+    <br>
+
+    <label>Username</label><input style="width: auto;" class="form-control form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ user.username }}" readonly placeholder="username"><br>
+    <label>First name</label><input style="width: auto;" class="form-control form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ user.first_name }}" readonly placeholder="first name"><br>
+    <label>Last name</label><input style="width: auto;" class="form-control form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ user.last_name }}" readonly placeholder="last name"><br>
+    <label>Date of birth</label><input style="width: auto;" class="form-control form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ profile.date_of_birth }}" readonly placeholder="last name"><br>
+    <label>Email</label><input style="width: auto;" class="form-control form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ user.email }}" readonly placeholder="email"><br>
+    <label>Profile Photo</label><br>
+    <img src="{{ profile.photo.url }}" alt="ERORR" style="width:100px;"><br>
+    <br>
+    
+    <br>
+    <a href="{% url 'logout' %}" style="margin-right: 9px;"><button class="btn btn-success" type="submit">Log Out</button></a>
+    <a href="{% url 'edit_user_information' %}"><button class="btn btn-info ml-2">Edit</button></a>
+    <br>
+    
+    <a href="{% url 'password_change' %}"><button class="btn btn-danger" type="submit">Change password</button></a>
+    <br>
+
+    
+
+{% endblock content %}

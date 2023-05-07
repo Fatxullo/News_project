@@ -1,0 +1,26 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Search results{% endblock title %}
+
+
+{% block content %}
+
+    <h2>Search results</h2>
+    
+    <div class="cont_p" style="width:800px; margin: 50px 0 0 0;">
+        <div class="news_cont" style="width:100%;">
+            {% for serc_new in all_news %}
+            <div class="new_block" style="display: flex; width:90%; height:150px; margin:10px;">
+                <div class="image_b" style="width:230px; height:130px; box-sizing:border-box;"><a href="{{ serc_new.get_absolute_url }}"><img src="{{ serc_new.image.url }}" alt="" style="width: 100%; height:100%; border-radius:5px;"></a></div>
+                <div class="text_b" style="width: 480px; padding-left:10px;">
+                    <div class="time"><span><i class="fa fa-calendar"></i> {{ serc_new.publish_time }}</span></div>
+                    <div class="text_t" style="font-size: 20px; font-weight:600;"><a href="{{ sport_l.get_absolute_url }}" style="text-decoration: none; color:black;">{{ serc_new.title | truncatewords:6 }}</a></div>
+                    <div class="text_b" style="font-size: 17px;"><a href="{{ serc_new.get_absolute_url }}" style="text-decoration: none; color:black;">{{ serc_new.body | truncatewords:20 }}</a></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock content %}

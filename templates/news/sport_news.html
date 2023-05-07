@@ -1,4 +1,7 @@
 {% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Sport News{% endblock title %}
+{% load hitcount_tags %}
 
 
 
@@ -12,7 +15,7 @@
                 <div class="new_block" style="display: flex; width:90%; height:150px; margin:10px;">
                     <div class="image_b" style="width:230px; height:130px; box-sizing:border-box;"><a href="{{ sport_l.get_absolute_url }}"><img src="{{ sport_l.image.url }}" alt="" style="width: 100%; height:100%; border-radius:5px;"></a></div>
                     <div class="text_b" style="width: 480px; padding-left:10px;">
-                        <div class="time"><span><i class="fa fa-calendar"></i> {{ sport_l.publish_time }}</span></div>
+                        <div class="time"><span><i class="fa fa-calendar"></i> {{ sport_l.publish_time }} | Views <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for sport_l %}</span></div>
                         <div class="text_t" style="font-size: 20px; font-weight:600;"><a href="{{ sport_l.get_absolute_url }}" style="text-decoration: none; color:black;">{{ sport_l.title | truncatewords:6 }}</a></div>
                         <div class="text_b" style="font-size: 17px;"><a href="{{ sport_l.get_absolute_url }}" style="text-decoration: none; color:black;">{{ sport_l.body | truncatewords:20 }}</a></div>
                     </div>

@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Log In{% endblock title %}
+
+
+
+
+
+{% block content %}
+
+    <h2>Yo What sup man lets <span>Log in</span></h2>
+
+    <form method="post">{% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button class="btn btn-info ml-2" type="submit" >Log In</button>
+        <br>
+    </form>
+    <p><a style="color:rgb(69, 69, 249); text-decoration:underline;" href="{% url 'password_reset' %}">Forgot Password?</a></p>
+
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Profile Edit{% endblock title %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+<h2>Profile Edit</h2>
+<br>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    
+    {{ user_form|crispy }}
+    {{ profile_form|crispy }}
+
+    <button class="btn btn-success ml-2" type="submit">Edit</button>
+    <br>
+</form>
+
+
+{% endblock content %}

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{% block title %}Home Page{% endblock title %}</title>
+<title>{% block title %}{% endblock title %}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,21 +32,33 @@
             <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="header_top">
-                <div class="header_top_left">
-                    <ul class="top_nav">
-                    <li><a href="{% url 'home_page' %}">Home</a></li>
-                    <li><a href="{% url 'about_page' %}">About</a></li>
-                    <li><a href="{% url 'contact_us_page' %}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="header_top_right">
-                    <p>{% now 'jS F Y H:i' %}</p>
-                </div>
+                    <div class="header_top_left">
+                        <ul class="top_nav">
+                            <li><a href="{% url 'home_page' %}">Home</a></li>
+                            <li><a href="{% url 'about_page' %}">About</a></li>
+                            <li><a href="{% url 'contact_us_page' %}">Contact</a></li>
+                            {% if user.is_authenticated and user.is_superuser %}
+                            <li><a href="{% url 'admin_page' %}">Admin Page</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="header_top_right" style="display: block;">
+                        
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'user_profile' %}"><button class="btn btn-success ml-2" style="margin:10px 2px 0 0; border-radius:3px;">Profile</button></a>
+                            <a href="{% url 'logout' %}"><button class="btn btn-success ml-2" style="margin:10px 5px 0 2px; border-radius:3px;">Log Out</button></a>
+                        {% else %}
+                            <a href="{% url 'login' %}"><button class="btn btn-success ml-2" style="margin:10px 2px 0 0; border-radius:3px;">Log In</button></a>
+                            <a href="{% url 'user_register' %}"><button class="btn btn-success ml-2" style="margin:10px 5px 0 2px; border-radius:3px;">Sign Up</button></a>
+                        {% endif %}
+                        
+                        <p>{% now 'jS F Y H:i' %}</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="header_bottom">
-                <div class="logo_area"><a href="{% url 'home_page' %}" class="logo"><img src="{% static 'images/logo.jpg' %}" alt=""></a></div>
+                <div class="logo_area"><a href="{% url 'home_page' %}" class="logo" style="color:rgb(224, 109, 214); font-weight: 900">NewsHun</a></div>
                 <div class="add_banner"><a href="#"><img src="{% static 'images/addbanner_728x90_V1.jpg' %}" alt=""></a></div>
                 </div>
             </div>
@@ -66,8 +78,16 @@
                     <li><a href="{% url 'technology_news_page' %}">Technology</a></li>
                     <li><a href="{% url 'sport_news_page' %}">Sport</a></li>
                     <li><a href="{% url 'contact_us_page' %}">Contact Us</a></li>
+                    <li>
+                        <form method="get" action="{% url 'search_results' %}">{% csrf_token %}
+                            <input type="search" placeholder="search..." name="search" class="form-control" style="margin: 8px 0 0 10px;"> 
+                        </form>
+                    </li>
                     <!-- <li><a href="{% url '404_page' %}">404 Page</a></li> -->
                 </ul>
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <a href="{% url 'news_create' %}"><button class="btn btn-success ml-2" style="margin: 8px 10px 0 290px; border-radius: 3px;">Create News</button></a>
+                {% endif %}
             </div>
             </nav>
         </section>
@@ -133,15 +153,15 @@
                     <h2>Contact</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <address>
-                    Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
+                    Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-456-789 Fax: 123-456-789
                     </address>
                 </div>
                 </div>
             </div>
             </div>
             <div class="footer_bottom">
-            <p class="copyright">Copyright &copy; 2045 <a href="{% url 'home_page' %}">NewsFeed</a></p>
-            <p class="developer">Developed By Wpfreeware</p>
+            <p class="copyright">Copyright &copy; 2045 <a href="{% url 'home_page' %}">NewsHun</a></p>
+            <p class="developer">Developed By owner</p>
             </div>
         </footer>
 <!-- footer section end -->

@@ -1,0 +1,30 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Admin Page{% endblock title %}
+
+
+{% block content %}
+
+<h3>All Admins</h3>
+<br>
+<br>
+
+<table class="table table-bordered table-responsive table-striped">
+    <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Lastname</th>
+    </tr>
+
+    {% for user in admin_user %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+
+
+{% endblock content %}

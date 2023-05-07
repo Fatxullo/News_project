@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Delete Post {% endblock title %}
+
+
+{% block content %}
+    <h2 style="color: red;">Delete News</h2>
+    <form method="post">{% csrf_token %}
+        <p style="font-size: 18px; font-weight:500;">{{ news.title | truncatewords:10 }}... --- <span style="color: red; font-size:18px; font-weight: 500;">Are you want to Delete this new</span></p>
+        <br>
+        <button style="color:white; background-color:red;" class="btn btn-denger ml-2" type="submit">Delete</button>
+        <br>
+    </form>
+
+
+
+{% endblock content %}
