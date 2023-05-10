@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,7 @@
 
 <!-- menu section start -->
     <div class="container">
+        
         <header id="header">
             <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -40,6 +42,24 @@
                             {% if user.is_authenticated and user.is_superuser %}
                             <li><a href="{% url 'admin_page' %}">Admin Page</a></li>
                             {% endif %}
+
+                            <li>
+                                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}" class="input">
+                                    <select name="language" style="height: 30px; background-color:rgb(90, 89, 89); color:white;">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% get_available_languages as LANGUAGES %}
+                                        {% get_language_info_list for LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                {{ language.name_local }} ({{ language.code }})
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="submit" value="Go" class="btn btn-success ml-2">
+                                </form>
+                            </li>
+
                         </ul>
                     </div>
                     <div class="header_top_right" style="display: block;">
@@ -58,7 +78,7 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="header_bottom">
-                <div class="logo_area"><a href="{% url 'home_page' %}" class="logo" style="color:rgb(224, 109, 214); font-weight: 900">NewsHun</a></div>
+                <div class="logo_area"><a href="{% url 'home_page' %}" class="logo" style="color:rgb(224, 109, 214); font-weight: 900">News <span style="color: black;">Hun</span></a></div>
                 <div class="add_banner"><a href="#"><img src="{% static 'images/addbanner_728x90_V1.jpg' %}" alt=""></a></div>
                 </div>
             </div>
@@ -160,7 +180,7 @@
             </div>
             </div>
             <div class="footer_bottom">
-            <p class="copyright">Copyright &copy; 2045 <a href="{% url 'home_page' %}">NewsHun</a></p>
+            <p class="copyright">Fz &copy; 2045 <a href="{% url 'home_page' %}">NewsHun</a></p>
             <p class="developer">Developed By owner</p>
             </div>
         </footer>

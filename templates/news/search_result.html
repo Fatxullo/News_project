@@ -14,7 +14,7 @@
                 <div class="image_b" style="width:230px; height:130px; box-sizing:border-box;"><a href="{{ serc_new.get_absolute_url }}"><img src="{{ serc_new.image.url }}" alt="" style="width: 100%; height:100%; border-radius:5px;"></a></div>
                 <div class="text_b" style="width: 480px; padding-left:10px;">
                     <div class="time"><span><i class="fa fa-calendar"></i> {{ serc_new.publish_time }}</span></div>
-                    <div class="text_t" style="font-size: 20px; font-weight:600;"><a href="{{ sport_l.get_absolute_url }}" style="text-decoration: none; color:black;">{{ serc_new.title | truncatewords:6 }}</a></div>
+                    <div class="text_t" style="font-size: 20px; font-weight:600;"><a href="{{ serc_new.get_absolute_url }}" style="text-decoration: none; color:black;">{{ serc_new.title | truncatewords:6 }}</a></div>
                     <div class="text_b" style="font-size: 17px;"><a href="{{ serc_new.get_absolute_url }}" style="text-decoration: none; color:black;">{{ serc_new.body | truncatewords:20 }}</a></div>
                 </div>
             </div>

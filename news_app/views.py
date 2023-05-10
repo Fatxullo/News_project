@@ -66,10 +66,10 @@ class HomePageView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['news_list'] = News.published.all().order_by('-publish_time')
-        context['local_news'] = News.published.all().filter(category__name='Local').order_by('-publish_time')[:5]
-        context['foreign_news'] = News.published.all().filter(category__name='Foreign').order_by('-publish_time')[:5]
-        context['technology_news'] = News.published.all().filter(category__name='Technology').order_by('-publish_time')[:5]
-        context['sport_news'] = News.published.all().filter(category__name='Sport').order_by('-publish_time')[:5]
+        context['local_news'] = News.published.all().filter(category__id=8).order_by('-publish_time')[:5]
+        context['foreign_news'] = News.published.all().filter(category__id=9).order_by('-publish_time')[:5]
+        context['technology_news'] = News.published.all().filter(category__id=10).order_by('-publish_time')[:5]
+        context['sport_news'] = News.published.all().filter(category__id=11).order_by('-publish_time')[:5]
         
         return context
     
@@ -171,7 +171,7 @@ class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
 class NewsCreateView(OnlyLoggedSuperUser, CreateView):
     model = News
     template_name = 'crud/news_create.html'
-    fields = ('title', 'slug', 'body', 'image', 'category', 'status')
+    fields = ('title', 'title_en', 'title_ru', 'title_uz', 'slug', 'body', 'body_en','body_ru', 'body_uz', 'image', 'category', 'status')
     
 
 @login_required
